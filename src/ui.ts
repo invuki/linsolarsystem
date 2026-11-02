@@ -10,11 +10,18 @@ export interface UIHandlers {
   onPanel(widthPx: number): void
 }
 
-/** Speed options in days/sec (1x = 1 simulated day per second). Drives both orbits and spin. */
-const REAL_TIME = 1 / 86400
-const SPEEDS = [REAL_TIME, 0.01, 0.1, 1, 10, 100, 1000]
-const DEFAULT_SPEED = 10
-const speedLabel = (m: number) => (m === REAL_TIME ? 'Real-time' : `${m}x`)
+/** Speed options as multiples of real time (1x = 1 simulated second per second). */
+const SPEEDS: [multiplier: number, label: string][] = [
+  [1, 'Real-time'],
+  [60, '60x (1 min/s)'],
+  [3600, '3,600x (1 hr/s)'],
+  [86400, '86,400x (1 day/s)'],
+  [864000, '864,000x (10 days/s)'],
+  [8640000, '8,640,000x (100 days/s)'],
+  [86400000, '86,400,000x (1,000 days/s)'],
+]
+const DEFAULT_SPEED = 1
+const SECONDS_PER_DAY = 86400
 
 /** Builds the Bootstrap control bar + planet modal and wires them to handlers. */
 export function createUI(root: HTMLElement, h: UIHandlers) {
@@ -35,7 +42,7 @@ export function createUI(root: HTMLElement, h: UIHandlers) {
             <label class="d-flex align-items-center gap-2 mb-0 small text-nowrap">
               Speed
               <select id="speed" class="form-select form-select-sm w-auto glass-input">
-                ${SPEEDS.map((m) => `<option value="${m}"${m === DEFAULT_SPEED ? ' selected' : ''}>${speedLabel(m)}</option>`).join('')}
+                ${SPEEDS.map(([m, label]) => `<option value="${m}"${m === DEFAULT_SPEED ? ' selected' : ''}>${label}</option>`).join('')}
               </select>
             </label>
             <div class="form-check form-switch mb-0">
@@ -81,7 +88,7 @@ export function createUI(root: HTMLElement, h: UIHandlers) {
     h.onPause(paused)
   }
 
-  speed.onchange = () => h.onSpeed(Number(speed.value))
+  speed.onchange = () => h.onSpeed(Number(speed.value) / SECONDS_PER_DAY)
   speed.onchange(new Event('change'))
 
   $<HTMLInputElement>('#orbits').onchange = (e) => h.onOrbits((e.target as HTMLInputElement).checked)

@@ -44,7 +44,7 @@ loadingManager.onLoad = () => {
 
 // --- state ---
 let paused = false
-let daysPerSecond = 10
+let daysPerSecond = 1 / 86400 // real time; the speed selector overrides this on load
 let days = 0
 let focusName: string | null = null
 let panelW = 0 // open sidebar width; the view is shifted so the focused planet stays visible
