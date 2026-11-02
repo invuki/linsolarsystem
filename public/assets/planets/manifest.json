@@ -1,0 +1,72 @@
+{
+  "sun": {
+    "radius": 4.0,
+    "file": "Sun.glb"
+  },
+  "orbits": "Orbits.glb",
+  "planets": {
+    "Mercury": {
+      "file": "Mercury.glb",
+      "radius": 0.38,
+      "orbitRadius": 9.0,
+      "axialTiltDeg": 0.03,
+      "startAngleDeg": 15
+    },
+    "Venus": {
+      "file": "Venus.glb",
+      "radius": 0.95,
+      "orbitRadius": 13.0,
+      "axialTiltDeg": 177.4,
+      "startAngleDeg": 75
+    },
+    "Earth": {
+      "file": "Earth.glb",
+      "radius": 1.0,
+      "orbitRadius": 18.0,
+      "axialTiltDeg": 23.4,
+      "startAngleDeg": 140,
+      "clouds": {
+        "radiusScale": 1.015
+      }
+    },
+    "Mars": {
+      "file": "Mars.glb",
+      "radius": 0.53,
+      "orbitRadius": 24.0,
+      "axialTiltDeg": 25.2,
+      "startAngleDeg": 200
+    },
+    "Jupiter": {
+      "file": "Jupiter.glb",
+      "radius": 2.8,
+      "orbitRadius": 38.0,
+      "axialTiltDeg": 3.1,
+      "startAngleDeg": 255
+    },
+    "Saturn": {
+      "file": "Saturn.glb",
+      "radius": 2.4,
+      "orbitRadius": 54.0,
+      "axialTiltDeg": 26.7,
+      "startAngleDeg": 305,
+      "rings": {
+        "inner": 3.0,
+        "outer": 5.52
+      }
+    },
+    "Uranus": {
+      "file": "Uranus.glb",
+      "radius": 1.6,
+      "orbitRadius": 68.0,
+      "axialTiltDeg": 97.8,
+      "startAngleDeg": 345
+    },
+    "Neptune": {
+      "file": "Neptune.glb",
+      "radius": 1.55,
+      "orbitRadius": 80.0,
+      "axialTiltDeg": 28.3,
+      "startAngleDeg": 50
+    }
+  }
+}
